@@ -97,7 +97,7 @@
 							<div class="col-md-6">
 								<ul class="footer-nav">
 									<li><a href="index.php">HOME</a></li>
-									<li><a href="javascript:void(0);">BLOG</a></li>
+							
 								</ul>
 
 							</div>

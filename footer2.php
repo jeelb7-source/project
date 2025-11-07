@@ -59,7 +59,7 @@
 							<div class="col-md-6">
 								<ul class="footer-nav">
 									<li><a href="index.php">HOME</a></li>
-									<li><a href="blog.php">BLOG</a></li>
+									
 								</ul>
 
 							</div>
