@@ -1,28 +1,28 @@
 (function ($) {
   'use strict';
 
+  console.log("dashboard.js loaded for SOEZI Nail Hub");
+
   // ==============================
   // 📊 VISIT AND SALES STATISTICS (Bookings, Services, Payments)
   // ==============================
   if ($("#visit-sale-chart").length) {
     const ctx = document.getElementById('visit-sale-chart');
+    const graph = ctx.getContext("2d");
 
-    // Create gradients for each bar color
-    const graphContext = ctx.getContext("2d");
-
-    const gradientPink = graphContext.createLinearGradient(0, 0, 0, 181);
+    // 🎨 Gradient colors
+    const gradientPink = graph.createLinearGradient(0, 0, 0, 181);
     gradientPink.addColorStop(0, 'rgba(255, 180, 210, 1)');
     gradientPink.addColorStop(1, 'rgba(255, 110, 170, 1)');
 
-    const gradientBlue = graphContext.createLinearGradient(0, 0, 0, 181);
+    const gradientBlue = graph.createLinearGradient(0, 0, 0, 181);
     gradientBlue.addColorStop(0, 'rgba(140, 200, 255, 1)');
     gradientBlue.addColorStop(1, 'rgba(90, 160, 230, 1)');
 
-    const gradientMint = graphContext.createLinearGradient(0, 0, 0, 181);
+    const gradientMint = graph.createLinearGradient(0, 0, 0, 181);
     gradientMint.addColorStop(0, 'rgba(180, 255, 200, 1)');
     gradientMint.addColorStop(1, 'rgba(100, 210, 160, 1)');
 
-    // Chart Data
     new Chart(ctx, {
       type: 'bar',
       data: {
@@ -74,12 +74,8 @@
           },
           x: {
             display: true,
-            grid: {
-              display: false
-            },
-            ticks: {
-              color: '#777'
-            }
+            grid: { display: false },
+            ticks: { color: '#777' }
           }
         },
         plugins: {
@@ -94,7 +90,6 @@
         }
       },
       plugins: [{
-        // Create custom legend
         afterDatasetUpdate: function (chart) {
           const legendContainer = document.getElementById('visit-sale-chart-legend');
           if (!legendContainer) return;
@@ -102,7 +97,8 @@
           chart.data.datasets.forEach((dataset) => {
             ul.innerHTML += `
               <li style="display:flex;align-items:center;margin-right:12px;">
-                <span style="background-color:${dataset.fillColor};width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:6px;"></span>
+                <span style="background-color:${dataset.fillColor};
+                width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:6px;"></span>
                 ${dataset.label}
               </li>`;
           });
@@ -114,13 +110,13 @@
   }
 
   // ==============================
-  // 🍩 TRAFFIC SOURCES CHART (Website Visits, Instagram Leads, Direct Clients)
+  // 🍩 TRAFFIC SOURCES CHART
   // ==============================
   if ($("#traffic-chart").length) {
     const ctx = document.getElementById('traffic-chart');
     const graphCtx = ctx.getContext('2d');
 
-    // Create gradient colors
+    // 🎨 Gradients
     const gradientPink = graphCtx.createLinearGradient(0, 0, 0, 181);
     gradientPink.addColorStop(0, 'rgba(255, 155, 210, 1)');
     gradientPink.addColorStop(1, 'rgba(255, 100, 180, 1)');
@@ -167,7 +163,8 @@
           chart.data.datasets[0].legendColor.forEach((color, i) => {
             ul.innerHTML += `
               <li style="display:flex;align-items:center;margin-bottom:8px;">
-                <span style="background-color:${color};width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:8px;"></span>
+                <span style="background-color:${color};
+                width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:8px;"></span>
                 ${chart.data.labels[i]}
               </li>`;
           });
@@ -188,7 +185,6 @@
     });
   }
 
-  // Manage top banner (Purple Admin default)
   if ($.cookie('purple-pro-banner') !== "true") {
     document.querySelector('#proBanner').classList.add('d-flex');
     document.querySelector('.navbar').classList.remove('fixed-top');

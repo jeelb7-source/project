@@ -1,144 +1,172 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>SOEZI Nail Hub</title>
-    <!-- plugins:css -->
+
+    <!-- 🔹 CSS Files -->
     <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../assets/vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../assets/vendors/font-awesome/css/font-awesome.min.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="../../assets/vendors/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <!-- End layout styles -->
     <link rel="shortcut icon" href="../../assets/images/favicon.png" />
   </head>
+
   <body>
+
     <div class="container-scroller">
-      <div class="row p-0 m-0 proBanner" id="proBanner">
-        <div class="col-md-12 p-0 m-0">
-          <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
-            <div class="ps-lg-3">
-              <div class="d-flex align-items-center justify-content-between">
-                <p class="mb-0 font-weight-medium me-3 buy-now-text">Free 24/7 customer support, updates, and more with this template!</p>
-                <a href="https://www.bootstrapdash.com/product/purple-bootstrap-admin-template/" target="_blank" class="btn me-2 buy-now-btn border-0">Buy Now</a>
+
+      <!-- 🔹 Include Header, Sidebar, and Database -->
+      <?php include '../header.php'; ?>
+<?php include '../sidebar.php'; ?>
+<?php include '../connection.php'; ?>
+
+
+
+      <?php
+        // Fetch last 5 appointments from database
+        $query = "SELECT * FROM appointment ORDER BY a_id DESC LIMIT 5";
+        $results = mysqli_query($conn, $query);
+      ?>
+
+      <!-- 🔹 Main Panel -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <!-- Page Header -->
+          <div class="page-header">
+            <h3 class="page-title">
+              <span class="page-title-icon bg-gradient-primary text-white me-2">
+                <i class="mdi mdi-home"></i>
+              </span>
+              Dashboard
+            </h3>
+          </div>
+
+          <!-- Dashboard Cards -->
+          <div class="row">
+            <div class="col-md-4 stretch-card grid-margin">
+              <div class="card bg-gradient-danger card-img-holder text-white">
+                <div class="card-body">
+                  <img src="../../assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                  <h4 class="font-weight-normal mb-3">
+                    Weekly Sales <i class="mdi mdi-chart-line mdi-24px float-end"></i>
+                  </h4>
+                  <h2 class="mb-5">$15,000</h2>
+                  <h6 class="card-text">Increased by 60%</h6>
+                </div>
               </div>
             </div>
-            <div class="d-flex align-items-center justify-content-between">
-              <a href="https://www.bootstrapdash.com/product/purple-bootstrap-admin-template/"><i class="mdi mdi-home me-3 text-white"></i></a>
-              <button id="bannerClose" class="btn border-0 p-0">
-                <i class="mdi mdi-close text-white mr-0"></i>
-              </button>
+
+            <div class="col-md-4 stretch-card grid-margin">
+              <div class="card bg-gradient-info card-img-holder text-white">
+                <div class="card-body">
+                  <img src="../../assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                  <h4 class="font-weight-normal mb-3">
+                    Weekly Orders <i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
+                  </h4>
+                  <h2 class="mb-5">45,633</h2>
+                  <h6 class="card-text">Decreased by 10%</h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 stretch-card grid-margin">
+              <div class="card bg-gradient-success card-img-holder text-white">
+                <div class="card-body">
+                  <img src="../../assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                  <h4 class="font-weight-normal mb-3">
+                    Visitors Online <i class="mdi mdi-diamond mdi-24px float-end"></i>
+                  </h4>
+                  <h2 class="mb-5">95,574</h2>
+                  <h6 class="card-text">Increased by 5%</h6>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <!-- partial:partials/_navbar.html -->
-      
-          <?php
-			include '../header.php';
-		  ?>
-      <!-- partial -->
-			<?php
-			include '../sidebar.php';
-		  ?>
-		  <?php
-			include '../connection.php';
-		?> 
-		   <?php
-			$str="select * from appointment order by a_id DESC LIMIT 5";
-			$results=mysqli_query($conn,$str);
-		   ?>
-        <!-- partial -->
-        <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="page-header">
-              <h3 class="page-title">
-                <span class="page-title-icon bg-gradient-primary text-white me-2">
-                  <i class="mdi mdi-home"></i>
-                </span> Dashboard
-              </h3>
-              <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div class="row">
-              <div class="col-12 grid-margin">
+
+ <div class="row">
+              <div class="col-md-7 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Recent Bookings</h4>
-                    <div class="table-responsive">
-                      <table class="table table-striped table-hover ">
-                        <thead>
-                          <tr>
-                            <th> User ID </th>
-                            <th> Appointment Date </th>
-                            <th> Employee </th>
-                            <th> Appointment Time </th>
-                            <th> Service ID </th>
-                            <th> Payment_status </th>
-                          
-                          </tr>
-                        </thead>
-                        <tbody>
-						  <?php while($row=mysqli_fetch_array($results)) {?>
-							<tr>
-								<td><?php echo $row['user_id'];?></td>
-								<td><?php echo $row['app_date'];?></td>
-								<td><?php echo $row['employee'];?></td>
-								<td><?php echo $row['app_time'];?></td>
-								<td><?php echo $row['service_id'];?></td>
-								<td><?php echo $row['payment_status'];?></td>
-							</tr>
-						  <?php }?>
-                        </tbody>
-                      </table>
+                    <div class="clearfix">
+                      <h4 class="card-title float-start">Visit And Sales Statistics</h4>
+                      <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-end"></div>
                     </div>
+                    <canvas id="visit-sale-chart" class="mt-4"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Traffic Sources</h4>
+                    <div class="doughnutjs-wrapper d-flex justify-content-center">
+                      <canvas id="traffic-chart"></canvas>
+                    </div>
+                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- Recent Appointments Table -->
+          <div class="row">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Recent Appointments</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>User ID</th>
+                          <th>Appointment Date</th>
+                          <th>Employee</th>
+                          <th>Appointment Time</th>
+                          <th>Service ID</th>
+                          <th>Payment Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php while ($row = mysqli_fetch_assoc($results)) { ?>
+                          <tr>
+                            <td><?= $row['user_id']; ?></td>
+                            <td><?= $row['app_date']; ?></td>
+                            <td><?= $row['employee']; ?></td>
+                            <td><?= $row['app_time']; ?></td>
+                            <td><?= $row['service_id']; ?></td>
+                            <td><?= $row['payment_status']; ?></td>
+                          </tr>
+                        <?php } ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-          <?php include '../footer.php'?>
-          <!-- partial -->
+
         </div>
-        <!-- main-panel ends -->
+        <!-- content-wrapper ends -->
+
+       
+<?php include '../footer.php'; ?>
+
       </div>
-      <!-- page-body-wrapper ends -->
+      <!-- main-panel ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
+    <!-- container-scroller ends -->
+
+    <!-- 🔹 JS Files -->
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
     <script src="../../assets/vendors/chart.js/chart.umd.js"></script>
     <script src="../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
     <script src="../../assets/js/off-canvas.js"></script>
     <script src="../../assets/js/misc.js"></script>
     <script src="../../assets/js/settings.js"></script>
     <script src="../../assets/js/todolist.js"></script>
-    <script src="../../assets/js/jquery.cookie.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
     <script src="../../assets/js/dashboard.js"></script>
-    <!-- End custom js for this page -->
   </body>
 </html>
